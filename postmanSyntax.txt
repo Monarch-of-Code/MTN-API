@@ -17,7 +17,7 @@ body :
         {
             "firstName" : "Muhammad",
             "lastName" : "Muzammil",
-            "phoneNumber" : "+92123456789"          The number must start from the country code
+            "phoneNumber" : "+92123456789"         // The number must start from the country code
         }
 
 header : Content-Type : application/json
@@ -27,7 +27,7 @@ Success Response :
 
 {
     "success": true,
-    "message": "User registered successfully under MTN Disbursements!",  the user will be created at MTN Disbursements by default 
+    "message": "User registered successfully under MTN Disbursements!",  //the user will be created at MTN Disbursements by default 
     "data": {
         "userId": "5817958e-3d78-4175-819e-db7a8381c818",
         "firstName": "Muhammad",
@@ -45,9 +45,9 @@ link : http://localhost:5000/api/disbursements/send-money
 
 body : 
         {
-            "amount" : 600,                         Can change the amount
-            "currency" : "EUR",                     In sandbox only EUR currency is supported
-            "recipientNumber" : "03214094287"       Use any number you want but it length must be 10 digits 
+            "amount" : 600,                        // Can change the amount
+            "currency" : "EUR",                    // In sandbox only EUR currency is supported
+            "recipientNumber" : "03214094287"      // Use any number you want but it length must be 10 digits 
         }
 
 header : Content-Type : application/json
@@ -68,9 +68,9 @@ link : http://localhost:5000/api/collection/receive-money
 
 body : 
         {
-            "amount" : 1000,                        Can change the amount
-            "currency" : "EUR",                     In sandbox only EUR currency is supported
-            "payerNumber" : "0123456789"            Use any number you want but it length must be 10 digits or greater
+            "amount" : 1000,                       // Can change the amount
+            "currency" : "EUR",                    // In sandbox only EUR currency is supported
+            "payerNumber" : "0123456789"           // Use any number you want but it length must be 10 digits or greater
         }
 
 header : Content-Type : application/json
@@ -85,4 +85,32 @@ Success Response :
 }
 
 
--------------------   For sending money to the bank  -----  it's still under construction   ---------------------
+-------------------   For sending money to the bank    ---------------------
+
+link : http://localhost:5000/api/bank-transfer/transfer
+
+body :                          //we are gonna use this on mobile so every time user wants to send money to the bank he can use the number 
+        {
+            "payerFullName": "John Doe",
+            "payerNumber": "+256700000000",   
+            "payeeFullName": "Muhammad Muzammil",
+            "payeeAccountNo": "+256700000001",    //originally the phone number is used to send money to other bank cuz MTN is mobile money sending service it dosen't support IBAN or BankAccountNo. 
+            "amount": "100.00",
+            "currency": "EUR"       //on sandbox the currency remains the same if you change, you will ge an error of current not supported.
+        }
+
+header : Content-Type : application/json
+
+
+Success Response :
+
+{
+    "status": "success",
+    "message": "Bank transfer initiated successfully",
+    "data": 
+        {
+            "referenceId": "6758db24-6857-4868-9a66-4d8579de46bd",
+            "status": 202,
+            "response": ""
+        }
+}

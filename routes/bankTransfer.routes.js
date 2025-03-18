@@ -1,9 +1,18 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { handleBankTransfer } = require("../controllers/bankTransfer.controller");
-const { validateBankTransfer } = require("../middlewares/bankTransfer.middleware"); // Import middleware
+const { authenticateMTN, validateBankTransferRequest } = require('../middlewares/bankTransfer.middleware');
+const { initiateBankTransfer, getTransferStatus } = require('../controllers/bankTransfer.controller');
 
-// ✅ Apply middleware to validate request before processing bank transfer
-router.post("/bank-transfer", validateBankTransfer, handleBankTransfer);
+// Bank transfer routes
+router.post('/transfer', 
+    authenticateMTN, 
+    validateBankTransferRequest, 
+    initiateBankTransfer
+);
 
-module.exports = router;
+router.get('/transfer/:referenceId', 
+    authenticateMTN, 
+    getTransferStatus
+);
+
+module.exports = router; 

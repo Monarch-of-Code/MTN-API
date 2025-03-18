@@ -1,0 +1,88 @@
+
+First this command in the terminal
+--------    npm install   --------
+
+Start the server with   " node index.js "   in the terminal
+
+
+-------------------------------------------------    Test on the Postman   -----------------------------------------------
+
+
+
+-----------------   For register new user use this syntax and link   ----------------------
+
+link : http://localhost:5000/api/auth/register
+
+body : 
+        {
+            "firstName" : "Muhammad",
+            "lastName" : "Muzammil",
+            "phoneNumber" : "+92123456789"          The number must start from the country code
+        }
+
+header : Content-Type : application/json
+
+
+Success Response : 
+
+{
+    "success": true,
+    "message": "User registered successfully under MTN Disbursements!",  the user will be created at MTN Disbursements by default 
+    "data": {
+        "userId": "5817958e-3d78-4175-819e-db7a8381c818",
+        "firstName": "Muhammad",
+        "lastName": "Muzammil",
+        "phoneNumber": "+92123456789",
+        "apiKey": "dd1d3f47ef87470e9f4fb0545f2baecf"
+    }
+}
+
+
+
+-----------------   For sending money use this syntax and link   ----------------------
+
+link : http://localhost:5000/api/disbursements/send-money
+
+body : 
+        {
+            "amount" : 600,                         Can change the amount
+            "currency" : "EUR",                     In sandbox only EUR currency is supported
+            "recipientNumber" : "03214094287"       Use any number you want but it length must be 10 digits 
+        }
+
+header : Content-Type : application/json
+
+
+Success Response :
+
+{
+    "success": true,
+    "message": "Money sent successfully!",
+    "data": ""
+}
+
+
+------------------   For receiving money use this syntax and link   ----------------------
+
+link : http://localhost:5000/api/collection/receive-money
+
+body : 
+        {
+            "amount" : 1000,                        Can change the amount
+            "currency" : "EUR",                     In sandbox only EUR currency is supported
+            "payerNumber" : "0123456789"            Use any number you want but it length must be 10 digits or greater
+        }
+
+header : Content-Type : application/json
+
+
+Success Response :
+
+{
+    "success": true,
+    "message": "Payment request sent successfully!",
+    "data": ""
+}
+
+
+-------------------   For sending money to the bank  -----  it's still under construction   ---------------------

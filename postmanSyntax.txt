@@ -114,3 +114,47 @@ Success Response :
             "response": ""
         }
 }
+
+
+
+
+----------------------------------  For Paying Bills   --------------------------------
+
+MTN required the customers phone number to pay the bill 
+The bills ID's , numbers, codes will vary on the bill type / category.
+
+
+
+link : http://localhost:5000/api/bills/pay
+
+body : 
+        {
+        "billType": "electricity",
+        "billerCode": "UMEME123",     // Biller code for the utility company
+        "billId": "12345678901",      // Customer's bill/meter number
+        "amount": "100.50",
+        "phoneNumber": "0771234567",   // Required: Customer's phone number (will be formatted to 256771234567)
+        "referenceNumber": "REF123"    // Optional reference number
+        }
+
+header : Content-Type : application/json
+
+
+Success Response : 
+
+{
+    "status": "success",
+    "message": "Bill payment initiated successfully",
+    "data": {
+        "transactionId": "4a06670b-37b5-44da-8237-879385e700ec",
+        "billType": "electricity",
+        "billerCode": "UMEME123",
+        "billId": "12345678901",
+        "phoneNumber": "256771234567",
+        "amount": "100.50",
+        "currency": "EUR",
+        "referenceNumber": "REF123",
+        "transactionStatus": "SUCCESSFUL",
+        "timestamp": "2025-03-19T06:22:22.500Z"
+    }
+}

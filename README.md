@@ -151,6 +151,10 @@ Content-Type: application/json
 - Always handle sensitive payment data carefully and follow security best practices.
 - You must purchase MTN services and obtain valid credentials in order to use their APIs.
 
+## License
+
+This project is provided as-is for demonstration and learning purposes.
+
 ## Author
 
 **Muhammad Muzammil** (Monarch of Code)
